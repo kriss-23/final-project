@@ -330,6 +330,14 @@ select:focus {
   background: var(--track);
 }
 
+.response-rate-input {
+  width: 100%;
+  min-height: 7px;
+  padding: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
 .range-thumb {
   position: absolute;
   top: 50%;
