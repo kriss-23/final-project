@@ -353,23 +353,38 @@ select:focus {
   transition: filter 160ms ease, transform 160ms ease;
 }
 
-.bar:hover {
+.bar:hover,
+.bar:focus {
   filter: brightness(1.15);
   transform: translateY(-2px);
 }
 
+.bar-segment {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  height: 100%;
+  min-width: 2px;
+  border-radius: 0 2px 2px 0;
+}
+
 .bar-prospects {
-  background:
-    linear-gradient(90deg, #b1bccb 0 16px, transparent 16px),
-    linear-gradient(90deg, #9faaba, #667386);
+  z-index: 1;
+  width: 100%;
+  background: #697587;
 }
 
 .bar-leads {
-  background: linear-gradient(90deg, #78899d, #aebdce);
+  z-index: 2;
+  width: var(--leads-width, 20%);
+  background: #8b98a9;
 }
 
 .bar-customers {
-  background: linear-gradient(90deg, #61758b, #91a5ba);
+  z-index: 3;
+  width: var(--customers-width, 8%);
+  background: #b8c2d0;
 }
 
 .chart-x-axis {
@@ -639,7 +654,6 @@ select:focus {
               <option value="USD" data-symbol="$">💵 US Dollar</option>
               <option value="EUR" data-symbol="€">💶 Euro</option>
               <option value="GBP" data-symbol="£">💷 British Pound</option>
-              <option value="BGN" data-symbol="лв">🇧🇬 Bulgarian Lev</option>
             </select>
           </div>
 
@@ -701,12 +715,12 @@ select:focus {
                 <span>6</span>
               </div>
               <div class="bar-chart" aria-hidden="true">
-                <div class="bar-group"><div id="prospects-bar" class="bar bar-prospects" style="--bar-width: 100%" tabindex="0" aria-label="Month 1: 125 prospects, 50 leads, 10 customers"></div><div class="month-tooltip"><strong>Month #1</strong><span>Prospects: 125</span><span>Leads: 50</span><span>Customers: 10</span></div></div>
-                <div class="bar-group"><div class="bar bar-prospects" style="--bar-width: 82%" tabindex="0" aria-label="Month 2: 103 prospects, 41 leads, 8 customers"></div><div class="month-tooltip"><strong>Month #2</strong><span>Prospects: 103</span><span>Leads: 41</span><span>Customers: 8</span></div></div>
-                <div class="bar-group"><div class="bar bar-prospects" style="--bar-width: 68%" tabindex="0" aria-label="Month 3: 85 prospects, 32 leads, 6 customers"></div><div class="month-tooltip"><strong>Month #3</strong><span>Prospects: 85</span><span>Leads: 32</span><span>Customers: 6</span></div></div>
-                <div class="bar-group"><div class="bar bar-prospects" style="--bar-width: 48%" tabindex="0" aria-label="Month 4: 60 prospects, 24 leads, 5 customers"></div><div class="month-tooltip"><strong>Month #4</strong><span>Prospects: 60</span><span>Leads: 24</span><span>Customers: 5</span></div></div>
-                <div class="bar-group"><div class="bar bar-prospects" style="--bar-width: 25%" tabindex="0" aria-label="Month 5: 31 prospects, 12 leads, 3 customers"></div><div class="month-tooltip"><strong>Month #5</strong><span>Prospects: 31</span><span>Leads: 12</span><span>Customers: 3</span></div></div>
-                <div class="bar-group"><div class="bar bar-prospects" style="--bar-width: 12%" tabindex="0" aria-label="Month 6: 15 prospects, 6 leads, 1 customer"></div><div class="month-tooltip"><strong>Month #6</strong><span>Prospects: 15</span><span>Leads: 6</span><span>Customers: 1</span></div></div>
+                <div class="bar-group" data-scale="0.16"><div class="bar" tabindex="0" aria-label="Month 1"><span class="bar-segment bar-prospects"></span><span class="bar-segment bar-leads"></span><span class="bar-segment bar-customers"></span></div><div class="month-tooltip"><strong>Month #1</strong><span class="prospects-tooltip">Prospects: 20</span><span class="leads-tooltip">Leads: 4</span><span class="customers-tooltip">Customers: 2</span></div></div>
+                <div class="bar-group" data-scale="0.32"><div class="bar" tabindex="0" aria-label="Month 2"><span class="bar-segment bar-prospects"></span><span class="bar-segment bar-leads"></span><span class="bar-segment bar-customers"></span></div><div class="month-tooltip"><strong>Month #2</strong><span class="prospects-tooltip">Prospects: 40</span><span class="leads-tooltip">Leads: 8</span><span class="customers-tooltip">Customers: 3</span></div></div>
+                <div class="bar-group" data-scale="0.50"><div class="bar" tabindex="0" aria-label="Month 3"><span class="bar-segment bar-prospects"></span><span class="bar-segment bar-leads"></span><span class="bar-segment bar-customers"></span></div><div class="month-tooltip"><strong>Month #3</strong><span class="prospects-tooltip">Prospects: 63</span><span class="leads-tooltip">Leads: 13</span><span class="customers-tooltip">Customers: 5</span></div></div>
+                <div class="bar-group" data-scale="0.68"><div class="bar" tabindex="0" aria-label="Month 4"><span class="bar-segment bar-prospects"></span><span class="bar-segment bar-leads"></span><span class="bar-segment bar-customers"></span></div><div class="month-tooltip"><strong>Month #4</strong><span class="prospects-tooltip">Prospects: 85</span><span class="leads-tooltip">Leads: 17</span><span class="customers-tooltip">Customers: 7</span></div></div>
+                <div class="bar-group" data-scale="0.84"><div class="bar" tabindex="0" aria-label="Month 5"><span class="bar-segment bar-prospects"></span><span class="bar-segment bar-leads"></span><span class="bar-segment bar-customers"></span></div><div class="month-tooltip"><strong>Month #5</strong><span class="prospects-tooltip">Prospects: 105</span><span class="leads-tooltip">Leads: 21</span><span class="customers-tooltip">Customers: 8</span></div></div>
+                <div class="bar-group" data-scale="1"><div id="prospects-bar" class="bar" tabindex="0" aria-label="Month 6"><span class="bar-segment bar-prospects"></span><span class="bar-segment bar-leads"></span><span class="bar-segment bar-customers"></span></div><div class="month-tooltip"><strong>Month #6</strong><span class="prospects-tooltip">Prospects: 125</span><span class="leads-tooltip">Leads: 25</span><span class="customers-tooltip">Customers: 10</span></div></div>
                 <div class="chart-x-axis"><span>0 people</span><span>20 people</span><span>40 people</span><span>60 people</span><span>80 people</span><span>100 people</span><span>120 people</span></div>
               </div>
             </div>
@@ -771,6 +785,7 @@ const leadResponseRateInput = document.querySelector("#lead-response-rate");
 const prospectResponseRateInput = document.querySelector("#prospect-response-rate");
 const chartPlot = document.querySelector("#chart-plot");
 const currencySymbols = document.querySelectorAll(".currency-symbol");
+const chartGroups = [...document.querySelectorAll(".bar-group")];
 
 const formatDate = (isoDate) => {
   const [year, month, day] = isoDate.split("-");
@@ -813,7 +828,7 @@ const metrics = {
   prospects: {
     value: document.querySelector("#prospects-value"),
     barValue: null,
-    bar: document.querySelector("#prospects-bar"),
+    bar: null,
     percentage: document.querySelector("#prospects-percentage"),
     progress: document.querySelector("#prospects-value").closest(".metric-card").querySelector(".metric-progress span"),
   },
@@ -855,6 +870,30 @@ const updateMetric = (metric, value, percentage, maxValue) => {
   metric.progress.style.width = `${Math.max((value / maxValue) * 100, 1)}%`;
 };
 
+const updateChart = (prospects, leads, customers) => {
+  const leadWidth = `${Math.max((leads / prospects) * 100, 1)}%`;
+  const customerWidth = `${Math.max((customers / prospects) * 100, 1)}%`;
+
+  chartGroups.forEach((group, index) => {
+    const scale = Number.parseFloat(group.dataset.scale);
+    const monthProspects = Math.round(prospects * scale);
+    const monthLeads = Math.round(leads * scale);
+    const monthCustomers = Math.round(customers * scale);
+    const bar = group.querySelector(".bar");
+
+    bar.style.setProperty("--bar-width", `${scale * 100}%`);
+    bar.style.setProperty("--leads-width", leadWidth);
+    bar.style.setProperty("--customers-width", customerWidth);
+    bar.setAttribute(
+      "aria-label",
+      `Month ${index + 1}: ${formatNumber(monthProspects)} prospects, ${formatNumber(monthLeads)} leads, ${formatNumber(monthCustomers)} customers`,
+    );
+    group.querySelector(".prospects-tooltip").textContent = `Prospects: ${formatNumber(monthProspects)}`;
+    group.querySelector(".leads-tooltip").textContent = `Leads: ${formatNumber(monthLeads)}`;
+    group.querySelector(".customers-tooltip").textContent = `Customers: ${formatNumber(monthCustomers)}`;
+  });
+};
+
 const updateDashboard = () => {
   const revenue = readPositiveNumber(revenueInput);
   const averageOrderValue = readPositiveNumber(averageOrderValueInput);
@@ -876,6 +915,7 @@ const updateDashboard = () => {
   updateMetric(metrics.prospects, prospects, 100, maxValue);
   updateMetric(metrics.leads, leads, (leads / prospects) * 100, maxValue);
   updateMetric(metrics.customers, customers, (customers / prospects) * 100, maxValue);
+  updateChart(prospects, leads, customers);
 
   chartPlot.setAttribute(
     "aria-label",
