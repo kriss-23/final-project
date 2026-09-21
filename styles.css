@@ -139,8 +139,9 @@ select:focus {
   border-radius: 11px;
 }
 
-.chart-placeholder {
-  position: relative;
+.campaign-chart {
+  display: grid;
+  grid-template-rows: auto 1fr;
   min-height: 390px;
   overflow: hidden;
   border: 1px solid rgb(74 96 120 / 28%);
@@ -151,10 +152,104 @@ select:focus {
   background-size: 68px 52px;
 }
 
-.chart-placeholder p {
-  margin: 16px;
+.chart-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  padding: 16px 16px 0 18px;
+}
+
+.chart-title {
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.chart-heading p {
+  margin: 4px 0 0;
   color: var(--muted-text);
-  font-size: 12px;
+  font-size: 11px;
+}
+
+.chart-unit {
+  color: var(--muted-text);
+  font-size: 10px;
+}
+
+.chart-plot {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 10px;
+  align-items: stretch;
+  min-height: 300px;
+  padding: 20px 18px 18px 14px;
+}
+
+.y-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 23px;
+  color: var(--muted-text);
+  font-size: 9px;
+  text-align: right;
+}
+
+.bar-chart {
+  display: flex;
+  align-items: end;
+  justify-content: space-around;
+  gap: 12%;
+  min-width: 0;
+  border-bottom: 1px solid rgb(170 183 199 / 36%);
+}
+
+.bar-group {
+  display: grid;
+  grid-template-rows: 18px minmax(0, 1fr) 22px;
+  align-items: end;
+  width: min(24%, 90px);
+  height: 100%;
+  color: var(--muted-text);
+  font-size: 10px;
+  text-align: center;
+}
+
+.bar-group > span {
+  align-self: end;
+  white-space: nowrap;
+}
+
+.bar-value {
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.bar {
+  width: 100%;
+  height: var(--bar-height);
+  min-height: 8px;
+  border-radius: 4px 4px 0 0;
+  box-shadow: inset 0 1px rgb(255 255 255 / 30%);
+  transition: filter 160ms ease, transform 160ms ease;
+}
+
+.bar:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+}
+
+.bar-prospects {
+  background: linear-gradient(90deg, #9eacbc, #d2dae5);
+}
+
+.bar-leads {
+  background: linear-gradient(90deg, #78899d, #aebdce);
+}
+
+.bar-customers {
+  background: linear-gradient(90deg, #61758b, #91a5ba);
 }
 
 .metric-stack {
@@ -271,8 +366,12 @@ select:focus {
     grid-template-columns: 1fr;
   }
 
-  .chart-placeholder {
+  .campaign-chart {
     min-height: 280px;
+  }
+
+  .chart-plot {
+    min-height: 200px;
   }
 }
 
@@ -283,5 +382,14 @@ select:focus {
 
   .chart-card {
     padding: 12px;
+  }
+
+  .chart-plot {
+    padding-right: 10px;
+    padding-left: 8px;
+  }
+
+  .bar-group {
+    font-size: 9px;
   }
 }

@@ -62,9 +62,42 @@
 
       <main class="dashboard">
         <section class="chart-card" aria-labelledby="campaign-overview-title">
-          <div class="chart-placeholder">
-            <span id="campaign-overview-title" class="sr-only">Campaign overview</span>
-            <p>Campaign overview</p>
+          <div class="campaign-chart" aria-describedby="chart-description">
+            <div class="chart-heading">
+              <div>
+                <span id="campaign-overview-title" class="chart-title">Campaign overview</span>
+                <p id="chart-description">Responses by campaign stage</p>
+              </div>
+              <span class="chart-unit">People</span>
+            </div>
+
+            <div class="chart-plot" role="img" aria-label="Campaign overview: 125 prospects, 25 leads, and 10 customers">
+              <div class="y-axis" aria-hidden="true">
+                <span>125</span>
+                <span>100</span>
+                <span>75</span>
+                <span>50</span>
+                <span>25</span>
+                <span>0</span>
+              </div>
+              <div class="bar-chart">
+                <div class="bar-group">
+                  <div class="bar-value">125</div>
+                  <div class="bar bar-prospects" style="--bar-height: 100%"></div>
+                  <span>Prospects</span>
+                </div>
+                <div class="bar-group">
+                  <div class="bar-value">25</div>
+                  <div class="bar bar-leads" style="--bar-height: 20%"></div>
+                  <span>Leads</span>
+                </div>
+                <div class="bar-group">
+                  <div class="bar-value">10</div>
+                  <div class="bar bar-customers" style="--bar-height: 8%"></div>
+                  <span>Customers</span>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="metric-stack" aria-label="Campaign metrics">
