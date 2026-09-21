@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="LeadPredictor campaign performance dashboard"
+    />
+    <title>LeadPredictor Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Campaign settings">
+        <a class="brand" href="/" aria-label="LeadPredictor home">
+          <span class="brand-mark" aria-hidden="true">◆</span>
+          <span>LeadPredictor</span>
+        </a>
+
+        <form class="campaign-form">
+          <div class="field-group">
+            <label for="language">Language</label>
+            <select id="language" name="language">
+              <option>English</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="currency">Currency</label>
+            <select id="currency" name="currency">
+              <option>US Dollar</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label for="campaign-start">Campaign Start</label>
+            <input id="campaign-start" name="campaign-start" type="date" />
+          </div>
+
+          <div class="field-group">
+            <label for="campaign-end">Campaign End</label>
+            <input id="campaign-end" name="campaign-end" type="date" />
+          </div>
+
+          <div class="field-group">
+            <label for="total-revenue">Total Revenue</label>
+            <input id="total-revenue" name="total-revenue" type="text" placeholder="$ 10000" />
+          </div>
+
+          <div class="field-group">
+            <label for="average-order-value">Avg. Order Value</label>
+            <input
+              id="average-order-value"
+              name="average-order-value"
+              type="text"
+              placeholder="$ 1000"
+            />
+          </div>
+        </form>
+      </aside>
+
+      <main class="dashboard">
+        <section class="chart-card" aria-labelledby="campaign-overview-title">
+          <div class="chart-placeholder">
+            <span id="campaign-overview-title" class="sr-only">Campaign overview</span>
+            <p>Campaign overview</p>
+          </div>
+
+          <div class="metric-stack" aria-label="Campaign metrics">
+            <article class="metric-card">
+              <span class="metric-icon" aria-hidden="true">▣</span>
+              <div>
+                <p>Prospects <strong>100%</strong></p>
+                <strong class="metric-value">125</strong>
+              </div>
+              <div class="metric-progress"><span style="width: 100%"></span></div>
+            </article>
+
+            <article class="metric-card">
+              <span class="metric-icon" aria-hidden="true">♟</span>
+              <div>
+                <p>Leads <strong>20%</strong></p>
+                <strong class="metric-value">25</strong>
+              </div>
+              <div class="metric-progress"><span style="width: 20%"></span></div>
+            </article>
+
+            <article class="metric-card">
+              <span class="metric-icon" aria-hidden="true">⌛</span>
+              <div>
+                <p>Customers <strong>8%</strong></p>
+                <strong class="metric-value">10</strong>
+              </div>
+              <div class="metric-progress"><span style="width: 8%"></span></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="response-card" aria-labelledby="response-rates-title">
+          <h2 id="response-rates-title" class="sr-only">Response rates</h2>
+          <div class="range-row">
+            <div class="range-label">
+              <span>Lead Response Rate</span>
+              <span>40.00%</span>
+            </div>
+            <div class="range-track"><span class="range-thumb" style="left: 40%"></span></div>
+          </div>
+          <div class="range-row">
+            <div class="range-label">
+              <span>Prospect Response Rate</span>
+              <span>20.00%</span>
+            </div>
+            <div class="range-track"><span class="range-thumb" style="left: 20%"></span></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
