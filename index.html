@@ -131,46 +131,102 @@ select {
 }
 
 .language-select-wrapper {
-  display: flex;
-  align-items: center;
+  position: relative;
 }
 
-.language-select-wrapper select {
-  position: relative;
-  z-index: 1;
-  padding-left: 38px;
-  background-repeat: no-repeat;
-  background-position: 11px center;
-  background-size: 18px 13px;
+.language-select {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 34px;
+  padding: 0 34px 0 12px;
+  color: var(--text);
+  border: 1px solid #34485f;
+  border-radius: 5px;
+  background: var(--field-background);
+  cursor: pointer;
+}
+
+.language-select::after {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid var(--text);
+  border-bottom: 2px solid var(--text);
+  content: "";
+  transform: translateY(-65%) rotate(45deg);
+}
+
+.language-select[aria-expanded="true"]::after {
+  transform: translateY(-25%) rotate(225deg);
+}
+
+.language-current,
+.language-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.language-options {
+  position: absolute;
+  z-index: 5;
+  top: calc(100% + 2px);
+  right: 0;
+  left: 0;
+  display: none;
+  padding: 4px 0;
+  border: 1px solid #52647a;
+  background: var(--field-background);
+  box-shadow: 0 8px 18px rgb(0 0 0 / 35%);
+}
+
+.language-options[data-open="true"] {
+  display: block;
+}
+
+.language-option {
+  width: 100%;
+  min-height: 38px;
+  padding: 0 12px;
+  color: var(--text);
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+
+.language-option:hover,
+.language-option[aria-selected="true"] {
+  background: #8db9eb;
+  color: #172436;
 }
 
 .language-flag {
-  position: absolute;
-  z-index: 2;
-  left: 11px;
   display: block;
   width: 18px;
   height: 13px;
   border: 1px solid rgb(255 255 255 / 30%);
   border-radius: 2px;
   box-shadow: 0 1px 2px rgb(0 0 0 / 20%);
-  pointer-events: none;
 }
 
 .flag-us {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 13'%3E%3Crect width='18' height='13' fill='%23fff'/%3E%3Cpath fill='%23b22234' d='M0 0h18v2H0zm0 4h18v2H0zm0 4h18v2H0zm0 4h18v1H0z'/%3E%3Cpath fill='%233c3b6e' d='M0 0h8v7H0z'/%3E%3C/svg%3E");
+  background: linear-gradient(#b22234 0 14%, #fff 14% 28%, #b22234 28% 42%, #fff 42% 56%, #b22234 56% 70%, #fff 70% 84%, #b22234 84%);
 }
 
 .flag-bg {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 13'%3E%3Cpath fill='%23fff' d='M0 0h18v4.33H0z'/%3E%3Cpath fill='%2300966e' d='M0 4.33h18v4.34H0z'/%3E%3Cpath fill='%23d62612' d='M0 8.67h18V13H0z'/%3E%3C/svg%3E");
+  background: linear-gradient(#fff 0 33%, #00966e 33% 66%, #d62612 66%);
 }
 
 .flag-es {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 13'%3E%3Cpath fill='%23aa151b' d='M0 0h18v3.25H0zM0 9.75h18V13H0z'/%3E%3Cpath fill='%23f1bf00' d='M0 3.25h18v6.5H0z'/%3E%3C/svg%3E");
+  background: linear-gradient(#aa151b 0 25%, #f1bf00 25% 75%, #aa151b 75%);
 }
 
 .flag-de {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 13'%3E%3Cpath d='M0 0h18v4.33H0z'/%3E%3Cpath fill='%23dd0000' d='M0 4.33h18v4.34H0z'/%3E%3Cpath fill='%23ffce00' d='M0 8.67h18V13H0z'/%3E%3C/svg%3E");
+  background: linear-gradient(#000 0 33%, #dd0000 33% 66%, #ffce00 66%);
 }
 
 .input-with-prefix input {
@@ -685,13 +741,15 @@ select:focus {
           <div class="field-group">
             <label for="language">Language</label>
             <div class="language-select-wrapper">
-              <span id="language-flag" class="language-flag flag-us" aria-hidden="true"></span>
-              <select id="language" class="language-select flag-us" name="language" aria-label="Language">
-                <option value="en" data-locale="en-US">English</option>
-                <option value="bg" data-locale="bg-BG">Bulgarian</option>
-                <option value="es" data-locale="es-ES">Spanish</option>
-                <option value="de" data-locale="de-DE">German</option>
-              </select>
+              <button id="language" class="language-select" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language">
+                <span class="language-current"><span id="language-flag" class="language-flag flag-us" aria-hidden="true"></span><span id="language-name">English</span></span>
+              </button>
+              <div id="language-options" class="language-options" role="listbox" data-open="false">
+                <button class="language-option" type="button" role="option" data-value="en" data-locale="en-US" aria-selected="true"><span class="language-flag flag-us" aria-hidden="true"></span>English</button>
+                <button class="language-option" type="button" role="option" data-value="bg" data-locale="bg-BG" aria-selected="false"><span class="language-flag flag-bg" aria-hidden="true"></span>Bulgarian</button>
+                <button class="language-option" type="button" role="option" data-value="es" data-locale="es-ES" aria-selected="false"><span class="language-flag flag-es" aria-hidden="true"></span>Spanish</button>
+                <button class="language-option" type="button" role="option" data-value="de" data-locale="de-DE" aria-selected="false"><span class="language-flag flag-de" aria-hidden="true"></span>German</button>
+              </div>
             </div>
           </div>
 
@@ -826,6 +884,9 @@ select:focus {
 const form = document.querySelector(".campaign-form");
 const languageSelect = document.querySelector("#language");
 const languageFlag = document.querySelector("#language-flag");
+const languageName = document.querySelector("#language-name");
+const languageOptions = document.querySelector("#language-options");
+const languageOptionButtons = [...document.querySelectorAll(".language-option")];
 const currencySelect = document.querySelector("#currency");
 const revenueInput = document.querySelector("#total-revenue");
 const averageOrderValueInput = document.querySelector("#average-order-value");
@@ -867,13 +928,33 @@ const updateCurrencySymbol = () => {
 };
 
 const updateLanguageFlag = () => {
-  const flagClass = `flag-${languageSelect.value === "en" ? "us" : languageSelect.value}`;
+  const selectedOption = languageOptionButtons.find((option) => option.getAttribute("aria-selected") === "true");
+  const value = selectedOption.dataset.value;
+  const flagClass = `flag-${value === "en" ? "us" : value}`;
   languageFlag.className = `language-flag ${flagClass}`;
-  languageSelect.className = `language-select ${flagClass}`;
-  document.documentElement.lang = languageSelect.value;
+  languageName.textContent = selectedOption.textContent.trim();
+  document.documentElement.lang = value;
 };
 
-languageSelect.addEventListener("change", updateLanguageFlag);
+languageSelect.addEventListener("click", () => {
+  const isOpen = languageOptions.dataset.open === "true";
+  languageOptions.dataset.open = String(!isOpen);
+  languageSelect.setAttribute("aria-expanded", String(!isOpen));
+});
+languageOptionButtons.forEach((option) => {
+  option.addEventListener("click", () => {
+    languageOptionButtons.forEach((item) => item.setAttribute("aria-selected", String(item === option)));
+    languageOptions.dataset.open = "false";
+    languageSelect.setAttribute("aria-expanded", "false");
+    updateLanguageFlag();
+  });
+});
+document.addEventListener("click", (event) => {
+  if (!event.target.closest(".language-select-wrapper")) {
+    languageOptions.dataset.open = "false";
+    languageSelect.setAttribute("aria-expanded", "false");
+  }
+});
 currencySelect.addEventListener("change", updateCurrencySymbol);
 updateLanguageFlag();
 updateCurrencySymbol();
