@@ -394,7 +394,7 @@ select:focus {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 8px 0 22px;
+  padding: 8px 0 70px;
   color: var(--muted-text);
   font-size: 8px;
   text-align: right;
@@ -453,54 +453,6 @@ select:focus {
 }
 
 .bar-group:first-child .month-tooltip {
-  top: calc(100% + 8px);
-  bottom: auto;
-}
-
-.bar-group:nth-child(2) .month-tooltip {
-  top: calc(100% + 8px);
-  bottom: auto;
-}
-
-}
-
-.bar-group:hover .month-tooltip,
-.bar-group:focus-within .month-tooltip,
-.bar:focus + .month-tooltip {
-  visibility: visible;
-  opacity: 1;
-  transform: translate(-50%, -4px);
-}
-
-.month-tooltip {
-  position: absolute;
-  z-index: 3;
-  bottom: calc(100% + 12px);
-  left: 50%;
-  display: grid;
-  min-width: 92px;
-  gap: 2px;
-  padding: 6px 7px;
-  border: 1px solid #718094;
-  border-radius: 2px;
-  color: var(--text);
-  font-size: 8px;
-  text-align: left;
-  background: #687587;
-  box-shadow: 0 5px 12px rgb(0 0 0 / 20%);
-  visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
-  transform: translate(-50%, 2px);
-  transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
-}
-
-.bar-group:first-child .month-tooltip {
-  top: calc(100% + 8px);
-  bottom: auto;
-}
-
-.bar-group:nth-child(2) .month-tooltip {
   top: calc(100% + 8px);
   bottom: auto;
 }
@@ -572,18 +524,6 @@ select:focus {
   z-index: 3;
   width: var(--customers-width, 8%);
   background: #b8c2d0;
-}
-
-.chart-x-axis {
-  display: flex;
-  grid-column: 1;
-  justify-content: space-between;
-  gap: 2px;
-  padding-top: 4px;
-  border-top: 1px solid rgb(170 183 199 / 36%);
-  color: var(--muted-text);
-  font-size: 8px;
-  white-space: nowrap;
 }
 
 .chart-x-axis {
@@ -893,12 +833,6 @@ select:focus {
                 <button class="language-option" type="button" role="option" data-value="de" data-locale="de-DE" aria-selected="false"><span class="language-flag flag-de" aria-hidden="true"></span>German</button>
               </div>
             </div>
-            <select id="language" name="language" aria-label="Language">
-              <option value="en" data-locale="en-US">🇺🇸 English</option>
-              <option value="bg" data-locale="bg-BG">🇧🇬 Bulgarian</option>
-              <option value="es" data-locale="es-ES">🇪🇸 Spanish</option>
-              <option value="de" data-locale="de-DE">🇩🇪 German</option>
-            </select>
           </div>
 
           <div class="field-group">
@@ -907,10 +841,6 @@ select:focus {
               <option value="USD" data-symbol="$">$ US Dollar</option>
               <option value="EUR" data-symbol="€">€ Euro</option>
               <option value="GBP" data-symbol="£">£ British Pound</option>
-              <option value="USD" data-symbol="$">💵 US Dollar</option>
-              <option value="EUR" data-symbol="€">💶 Euro</option>
-              <option value="GBP" data-symbol="£">💷 British Pound</option>
-              <option value="BGN" data-symbol="лв">🇧🇬 Bulgarian Lev</option>
             </select>
           </div>
 
@@ -919,7 +849,6 @@ select:focus {
             <div class="date-input-wrapper">
               <input id="campaign-start" name="campaign-start" type="text" inputmode="numeric" value="08-May-2026" pattern="[0-9]{2}-[A-Za-z]{3}-[0-9]{4}" placeholder="DD-MMM-YYYY" aria-describedby="date-format-help" />
               <button class="date-picker-button" type="button" data-date-target="campaign-start-picker" aria-label="Choose campaign start date"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="1" /><path d="M8 3v4M16 3v4M4 10h16" /></svg></button>
-              <button class="date-picker-button" type="button" data-date-target="campaign-start-picker" aria-label="Choose campaign start date">▣</button>
               <input id="campaign-start-picker" class="native-date-input" type="date" value="2026-05-08" tabindex="-1" aria-hidden="true" />
             </div>
           </div>
@@ -929,7 +858,6 @@ select:focus {
             <div class="date-input-wrapper">
               <input id="campaign-end" name="campaign-end" type="text" inputmode="numeric" value="04-Nov-2026" pattern="[0-9]{2}-[A-Za-z]{3}-[0-9]{4}" placeholder="DD-MMM-YYYY" aria-describedby="date-format-help" />
               <button class="date-picker-button" type="button" data-date-target="campaign-end-picker" aria-label="Choose campaign end date"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="1" /><path d="M8 3v4M16 3v4M4 10h16" /></svg></button>
-              <button class="date-picker-button" type="button" data-date-target="campaign-end-picker" aria-label="Choose campaign end date">▣</button>
               <input id="campaign-end-picker" class="native-date-input" type="date" value="2026-11-04" tabindex="-1" aria-hidden="true" />
             </div>
             <span id="date-format-help" class="sr-only">Use the format day-month-year, for example 08-May-2026.</span>
@@ -980,12 +908,6 @@ select:focus {
                 <div class="bar-group" data-scale="0.68"><div class="bar" tabindex="0" aria-label="Month 4"><span class="bar-segment bar-prospects"></span><span class="bar-segment bar-leads"></span><span class="bar-segment bar-customers"></span></div><div class="month-tooltip"><strong>Month #4</strong><span class="prospects-tooltip">Prospects: 85</span><span class="leads-tooltip">Leads: 17</span><span class="customers-tooltip">Customers: 7</span></div></div>
                 <div class="bar-group" data-scale="0.84"><div class="bar" tabindex="0" aria-label="Month 5"><span class="bar-segment bar-prospects"></span><span class="bar-segment bar-leads"></span><span class="bar-segment bar-customers"></span></div><div class="month-tooltip"><strong>Month #5</strong><span class="prospects-tooltip">Prospects: 105</span><span class="leads-tooltip">Leads: 21</span><span class="customers-tooltip">Customers: 8</span></div></div>
                 <div class="bar-group" data-scale="1"><div id="prospects-bar" class="bar" tabindex="0" aria-label="Month 6"><span class="bar-segment bar-prospects"></span><span class="bar-segment bar-leads"></span><span class="bar-segment bar-customers"></span></div><div class="month-tooltip"><strong>Month #6</strong><span class="prospects-tooltip">Prospects: 125</span><span class="leads-tooltip">Leads: 25</span><span class="customers-tooltip">Customers: 10</span></div></div>
-                <div class="bar-group"><div id="prospects-bar" class="bar bar-prospects" style="--bar-width: 100%" tabindex="0" aria-label="Month 1: 125 prospects, 50 leads, 10 customers"></div><div class="month-tooltip"><strong>Month #1</strong><span>Prospects: 125</span><span>Leads: 50</span><span>Customers: 10</span></div></div>
-                <div class="bar-group"><div class="bar bar-prospects" style="--bar-width: 82%" tabindex="0" aria-label="Month 2: 103 prospects, 41 leads, 8 customers"></div><div class="month-tooltip"><strong>Month #2</strong><span>Prospects: 103</span><span>Leads: 41</span><span>Customers: 8</span></div></div>
-                <div class="bar-group"><div class="bar bar-prospects" style="--bar-width: 68%" tabindex="0" aria-label="Month 3: 85 prospects, 32 leads, 6 customers"></div><div class="month-tooltip"><strong>Month #3</strong><span>Prospects: 85</span><span>Leads: 32</span><span>Customers: 6</span></div></div>
-                <div class="bar-group"><div class="bar bar-prospects" style="--bar-width: 48%" tabindex="0" aria-label="Month 4: 60 prospects, 24 leads, 5 customers"></div><div class="month-tooltip"><strong>Month #4</strong><span>Prospects: 60</span><span>Leads: 24</span><span>Customers: 5</span></div></div>
-                <div class="bar-group"><div class="bar bar-prospects" style="--bar-width: 25%" tabindex="0" aria-label="Month 5: 31 prospects, 12 leads, 3 customers"></div><div class="month-tooltip"><strong>Month #5</strong><span>Prospects: 31</span><span>Leads: 12</span><span>Customers: 3</span></div></div>
-                <div class="bar-group"><div class="bar bar-prospects" style="--bar-width: 12%" tabindex="0" aria-label="Month 6: 15 prospects, 6 leads, 1 customer"></div><div class="month-tooltip"><strong>Month #6</strong><span>Prospects: 15</span><span>Leads: 6</span><span>Customers: 1</span></div></div>
                 <div class="chart-x-axis"><span>0 people</span><span>20 people</span><span>40 people</span><span>60 people</span><span>80 people</span><span>100 people</span><span>120 people</span></div>
               </div>
             </div>
@@ -1117,32 +1039,21 @@ document.addEventListener("click", (event) => {
 });
 currencySelect.addEventListener("change", updateCurrencySymbol);
 updateLanguageFlag();
-languageSelect.addEventListener("change", () => {
-  document.documentElement.lang = languageSelect.value;
-});
-currencySelect.addEventListener("change", updateCurrencySymbol);
 updateCurrencySymbol();
 
 const metrics = {
   prospects: {
     value: document.querySelector("#prospects-value"),
-    barValue: null,
-    bar: null,
-    bar: document.querySelector("#prospects-bar"),
     percentage: document.querySelector("#prospects-percentage"),
     progress: document.querySelector("#prospects-value").closest(".metric-card").querySelector(".metric-progress span"),
   },
   leads: {
     value: document.querySelector("#leads-value"),
-    barValue: null,
-    bar: null,
     percentage: document.querySelector("#leads-percentage"),
     progress: document.querySelector("#leads-value").closest(".metric-card").querySelector(".metric-progress span"),
   },
   customers: {
     value: document.querySelector("#customers-value"),
-    barValue: null,
-    bar: null,
     percentage: document.querySelector("#customers-percentage"),
     progress: document.querySelector("#customers-value").closest(".metric-card").querySelector(".metric-progress span"),
   },
